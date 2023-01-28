@@ -1,6 +1,8 @@
-const mongoose = require('mongoose')
-
+//requires importing mongoose to be used in the program
+const mongoose = require('mongoose');
+//creates a new schema to format the data that is retrieved from the database and passed onto the rest of the program
 const TodoSchema = new mongoose.Schema({
+  //data entries consist of a name, completion status and unique ID
   todo: {
     type: String,
     required: true,
@@ -13,6 +15,7 @@ const TodoSchema = new mongoose.Schema({
     type: String,
     required: true
   }
-})
+});
 
-module.exports = mongoose.model('Todo', TodoSchema)
+//exports the collection from the database along with the schema
+module.exports = mongoose.model('Todo', TodoSchema);

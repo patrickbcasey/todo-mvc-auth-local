@@ -1,10 +1,13 @@
+/* makes h1 red */
 h1{
     color: red;
 }
+/* makes .completed class struck-through and gray */
 .completed{
     text-decoration: line-through;
     color: gray;
 }
+/* makes .not class underlined */
 .not{
     text-decoration: underline;
 }

@@ -1,46 +1,68 @@
-const express = require('express')
-const app = express()
-const mongoose = require('mongoose')
-const passport = require('passport')
-const session = require('express-session')
-const MongoStore = require('connect-mongo')(session)
-const flash = require('express-flash')
-const logger = require('morgan')
-const connectDB = require('./config/database')
-const mainRoutes = require('./routes/main')
-const todoRoutes = require('./routes/todos')
+// module imports
+// require importing express to be used in the program
+const express = require('express');
+// using express methods in an accessible and common shorthand
+const app = express();
+// imports mongoose ODM
+const mongoose = require('mongoose');
+// imports passport password hashing and managing
+const passport = require('passport');
+// imports express session to make login sessions via cookies
+const session = require('express-session');
+// imports connect-mongo to open a database connection
+const MongoStore = require('connect-mongo')(session);
+// imports express-flash to flash things
+const flash = require('express-flash');
+// Logger to note how server is being handled in the console
+const logger = require('morgan');
+// imports database.js file that handles database connection
+const connectDB = require('./config/database');
 
-require('dotenv').config({path: './config/.env'})
+// imports main.js file that handles mainRoutes such as login, logout, signup and /
+const mainRoutes = require('./routes/main');
+// allows accesss to /routes/todos.js to handle routing for 2121/todos/
+const todoRoutes = require('./routes/todos');
 
-// Passport config
-require('./config/passport')(passport)
+// importing secrets from .env and passing in the path to the .env file
+require('dotenv').config({path: './config/.env'});
 
-connectDB()
+// Passport config for authentication
+require('./config/passport')(passport);
 
-app.set('view engine', 'ejs')
-app.use(express.static('public'))
-app.use(express.urlencoded({ extended: true }))
-app.use(express.json())
-app.use(logger('dev'))
+// calling the database start
+connectDB();
+
+// setting render engine to ejs
+app.set('view engine', 'ejs');
+// initializing static folder
+app.use(express.static('public'));
+// bodyparser for html.post forms 
+app.use(express.urlencoded({ extended: true }));
+// bodyparser for post requests
+app.use(express.json());
+//tells morgan to start its logging
+app.use(logger('dev'));
 // Sessions
 app.use(
-    session({
-      secret: 'keyboard cat',
-      resave: false,
-      saveUninitialized: false,
-      store: new MongoStore({ mongooseConnection: mongoose.connection }),
-    })
-  )
+  session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false,
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
+  })
+);
   
 // Passport middleware
-app.use(passport.initialize())
-app.use(passport.session())
-
-app.use(flash())
-  
-app.use('/', mainRoutes)
-app.use('/todos', todoRoutes)
- 
+app.use(passport.initialize());
+// restores a user if a session is present in ?cookies?
+app.use(passport.session());
+// flashes errors on screen
+app.use(flash());
+// if url root is or 2121/ direct to mainRoutes route handling
+app.use('/', mainRoutes);
+// if url root is 2121/todos direct to todoRoutes route handling
+app.use('/todos', todoRoutes);
+// run server on port defined by env and console log it so we have more visual confirmation that server is live
 app.listen(process.env.PORT, ()=>{
-    console.log('Server is running, you better catch it!')
-})    
+  console.log('Server is running, you better catch it!');
+});    

@@ -10,14 +10,18 @@
 <body>
     <h1>Todos</h1>
     <ul>
+    <!-- loop through todos passed in and display them -->
     <% todos.forEach( el => { %>
             <li class='todoItem' data-id='<%=el._id%>'>
+                <!-- if element object todo property marked true, add completed class -->
                 <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
+                <!-- add delete button -->
                 <span class='del'> Delete </span>
             </li>
     <% }) %>    
     </ul>
 
+    <!-- displays number of todos left -->
     <h2><%= user.userName %> has <%= left %> things left to do.</h2>
 
     <form action="/todos/createTodo" method='POST'>
