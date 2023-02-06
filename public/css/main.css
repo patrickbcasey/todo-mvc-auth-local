@@ -1,0 +1,13 @@
+completed {
+  font-size: 100%;
+  color: black;
+  font-color: white;
+  border-style: solid;
+}
+
+.hidden {
+ display: none; 
+}
+.border {
+  drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]
+}

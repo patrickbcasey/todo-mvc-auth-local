@@ -4,7 +4,7 @@ const express = require('express');
 //creates a router object that handles the routes
 const router = express.Router();
 //importing a controller folder to authController to use its methods
-const authController = require('../controllers/auth'); 
+const authController = require('../controllers/auth');
 //importing a controller folder to homeController to use its methods
 const homeController = require('../controllers/home');
 //imports authentication middleware, allows guests and logged in users
@@ -18,9 +18,9 @@ router.get('/login', authController.getLogin);
 router.post('/login', authController.postLogin);
 //GET response for logout route, redirects to auth controller, logs user out and redirects to home route
 router.get('/logout', authController.logout);
-//GET response for signup route, redirects to auth controller, redirects to todos if signed in, otherwise takes you to the signup page
+//GET response for signup route, redirects to auth controller, redirects to ankis if signed in, otherwise takes you to the signup page
 router.get('/signup', authController.getSignup);
-//POST response for signup route, redirects to auth controller, takes data from the entry form and uses it to create a new user account after validation and authentication, takes you to todo page after
+//POST response for signup route, redirects to auth controller, takes data from the entry form and uses it to create a new user account after validation and authentication, takes you to anki page after
 router.post('/signup', authController.postSignup);
 
 //exports router object to be used in other places

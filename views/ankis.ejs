@@ -1,0 +1,39 @@
+<%- include('partials/header') -%>
+  
+    <h1 class="p-24x mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">Ankis</h1>
+    <ul>
+    
+    <!-- loop through ankis passed in and display them -->
+    <% ankis.forEach( el => { %>
+      <!-- if its in the spaced repition time, show the question, otherwise hide it -->
+      <% if(el.timesAnswered ** 2 <= (Date.now() - el.lastSession)/86400000){ %>
+        
+        <!-- if(day == today, show answer if otherwise show question){then}
+        if(Date.now()-lastSession > 86400000){}-->
+            <li class='ankiItem my-5 my-4 text-lg text-gray-900' data-id='<%=el._id%>'>
+                <!-- if element object anki property marked true, add completed class -->
+              <% if(Date.now() - el.lastSession > 86400000) { %>
+                <span class='question border drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]'> <%= el.anki %> </span>
+                <span class='answer hidden border'> <%= el.ankiAnswer %> </span>
+                <span class='checkAns btn btn-xs'> Check Answer </span>
+                <% } %>
+                  
+                <!--Add a 'i've answered it, show me next cycle' button -->
+                <span class='spacedRep btn btn-xs'> Solved </span>
+                <!-- add delete button -->
+                <span class='del fa-solid fa-trash'></span>
+            </li>
+       <% } %> 
+    <% }) %>
+    </ul>
+    <!-- displays number of ankis left -->
+
+    <form action="/ankis/createAnki" method='POST'>
+        <input type="text" placeholder="Enter Anki Question" name='ankiItem' class = 'input input-bordered input-primary w-full max-w-xs'>
+        <input type="text" placeholder="Enter Anki Answer" name='ankiAnswer' class= 'input input-bordered input-primary w-full max-w-xs'>
+        <input type="submit" class='btn'>
+    </form>
+
+    <a href="/logout" class='btn btn-xs'>Logout</a>
+
+<%- include('partials/footer') -%>

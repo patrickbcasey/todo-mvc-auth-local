@@ -2,29 +2,25 @@
 
 replit @ https://replit.com/@adaellis/todo-mvc-auth-local
 
-A Simple ToDo App is built using the MVC Architecture, we have also implemented "authorization" so folx can sign up, customize & personalize the app 
-
----
-
-> Be sure to add that lovely star 😀 and fork it for your own copy
+A Simple Anki App is built using the MVC Architecture, we have also implemented "authorization" so folx can sign up, customize & personalize the app 
 
 ---
 
 # Objectives
 
-- It's a beginner level app created to understand how MVC concept and logins are added
+- Make an anki parody app
 
 ---
 
 # Who is this for? 
 
-- It's for beginners & intermediates with little more experience, to help understand the various aspects of building a node app with some complex features
-
+- People to use spaced repetition and 
+active recall to better learn or study ideas.
 ---
 
 # Packages/Dependencies used 
 
-bcrypt, connect-mongo, dotenv, ejs, express, express-flash, express-session, mongodb, mongoose, morgan, nodemon, passport, passport-local, validator
+bcrypt, connect-mongo, dotenv, ejs, express, express-flash, express-session, mongodb, mongoose, morgan, nodemon, passport, passport-local, validator, postcss, tailwindcss, font-awesome, daisyui
 
 ---
 
@@ -34,14 +30,13 @@ bcrypt, connect-mongo, dotenv, ejs, express, express-flash, express-session, mon
 
 ---
 
-# Things to add
-
-- Create a `.env` file and add the following as `key: value` 
-  - PORT: 2121 (can be any port example: 3000) 
-  - DB_STRING: `your database URI`
-  - Make an ANKI-Deck Builder
-  - Make it prettier
-  - use tailwind
+# Optimizations
+-Light and dark modes
+-Fine tune algorithm
+-Allow users to see their completed ankis and edit them
+-Search engine optimization
+-Question imports
+-Host the website
+-Use a better algorithm to calculate time till next occurence of a given anki
  ---
  
- Have fun testing and improving it! 😎

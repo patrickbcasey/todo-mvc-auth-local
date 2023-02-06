@@ -2,10 +2,10 @@
 const passport = require('passport');
 const validator = require('validator');
 const User = require('../models/User');
-//GET response to check to see if user is already logged in and if so will redirect to '/todos'
+//GET response to check to see if user is already logged in and if so will redirect to '/ankis'
 exports.getLogin = (req, res) => {
   if (req.user) {
-    return res.redirect('/todos');
+    return res.redirect('/ankis');
   }
   // if user is not logged in they will be shown the login page
   res.render('login', {
@@ -31,7 +31,7 @@ exports.postLogin = (req, res, next) => {
   req.body.email = validator.normalizeEmail(req.body.email, { gmail_remove_dots: false });
   // uses passport.authenticate to check if the typed in user and password match any in the database
   // if there is no match an error message will be flashed and user will be redirected to login page
-  // if there is a match flash a confirmation message and redirect to '/todos' page
+  // if there is a match flash a confirmation message and redirect to '/ankis' page
   passport.authenticate('local', (err, user, info) => {
     if (err) { return next(err); }
     if (!user) {
@@ -42,8 +42,8 @@ exports.postLogin = (req, res, next) => {
       if (err) { return next(err); }
       // flashes success on screen
       req.flash('success', { msg: 'Success! You are logged in.' });
-      // redirects to where the user left off in their session, or /todos if no session return info exists
-      res.redirect(req.session.returnTo || '/todos');
+      // redirects to where the user left off in their session, or /ankis if no session return info exists
+      res.redirect(req.session.returnTo || '/ankis');
     });
   })(req, res, next);
 };
@@ -63,11 +63,11 @@ exports.logout = (req, res) => {
     res.redirect('/');
   });
 };
-//checks if the user is logged in and if so redirects them to '/todos'
+//checks if the user is logged in and if so redirects them to '/ankis'
 //if user is not logged in they will be be redirected to sign up page
 exports.getSignup = (req, res) => {
   if (req.user) {
-    return res.redirect('/todos');
+    return res.redirect('/ankis');
   }
   res.render('signup', {
     title: 'Create Account'
@@ -107,7 +107,7 @@ exports.postSignup = (req, res, next) => {
       req.flash('errors', { msg: 'Account with that email address or username already exists.' });
       return res.redirect('../signup');
     }
-    //saves new user to database and logs in user, redirecting them to '/todos'
+    //saves new user to database and logs in user, redirecting them to '/ankis'
 
     user.save((err) => {
       if (err) { return next(err); }
@@ -115,7 +115,7 @@ exports.postSignup = (req, res, next) => {
         if (err) {
           return next(err);
         }
-        res.redirect('/todos');
+        res.redirect('/ankis');
       });
     });
   });

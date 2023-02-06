@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+<%- include('partials/header') -%>
+
 <!-- If there are any errors adds, loops through and displays each -->
     <% if (locals.messages.errors) { %>
         <% messages.errors.forEach( el => { %>
@@ -15,11 +8,10 @@
     <% } %>
 <!-- data entered into this form will be used in a POST request on the signup route -->
     <form action="/signup" method="POST">
-        <input type="text" name="userName" placeholder="User Name">
-        <input type="email" name="email" placeholder="Email">
-        <input type="password" name="password" placeholder="Password">
-        <input type="password" name="confirmPassword" placeholder="Confirm Password">
-        <input type="submit">
+        <input type="text" name="userName" placeholder="User Name" class = 'input input-bordered input-primary w-full max-w-xs'>
+        <input type="email" name="email" placeholder="Email" class = 'input input-bordered input-primary w-full max-w-xs'>
+        <input type="password" name="password" placeholder="Password" class = 'input input-bordered input-primary w-full max-w-xs'>
+        <input type="password" name="confirmPassword" placeholder="Confirm Password" class = 'input input-bordered input-primary w-full max-w-xs'>
+        <input type="submit" class="btn">
     </form>
-</body>
-</html>
+<%- include('partials/footer') -%>

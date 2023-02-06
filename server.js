@@ -20,11 +20,11 @@ const connectDB = require('./config/database');
 
 // imports main.js file that handles mainRoutes such as login, logout, signup and /
 const mainRoutes = require('./routes/main');
-// allows accesss to /routes/todos.js to handle routing for 2121/todos/
-const todoRoutes = require('./routes/todos');
+// allows accesss to /routes/ankis.js to handle routing for 2121/ankis/
+const ankiRoutes = require('./routes/ankis');
 
 // importing secrets from .env and passing in the path to the .env file
-require('dotenv').config({path: './config/.env'});
+require('dotenv').config({ path: './config/.env' });
 
 // Passport config for authentication
 require('./config/passport')(passport);
@@ -51,7 +51,7 @@ app.use(
     store: new MongoStore({ mongooseConnection: mongoose.connection }),
   })
 );
-  
+
 // Passport middleware
 app.use(passport.initialize());
 // restores a user if a session is present in ?cookies?
@@ -60,9 +60,9 @@ app.use(passport.session());
 app.use(flash());
 // if url root is or 2121/ direct to mainRoutes route handling
 app.use('/', mainRoutes);
-// if url root is 2121/todos direct to todoRoutes route handling
-app.use('/todos', todoRoutes);
+// if url root is 2121/ankis direct to ankiRoutes route handling
+app.use('/ankis', ankiRoutes);
 // run server on port defined by env and console log it so we have more visual confirmation that server is live
-app.listen(process.env.PORT, ()=>{
+app.listen(process.env.PORT, () => {
   console.log('Server is running, you better catch it!');
-});    
+});
