@@ -31,12 +31,12 @@ bcrypt, connect-mongo, dotenv, ejs, express, express-flash, express-session, mon
 ---
 
 # Optimizations
--Light and dark modes
--Fine tune algorithm
--Allow users to see their completed ankis and edit them
--Search engine optimization
--Question imports
--Host the website
--Use a better algorithm to calculate time till next occurence of a given anki
+- Light and dark modes 
+- Fine tune algorithm
+- Allow users to see their completed ankis and edit them
+- Search engine optimization
+- Question imports
+- Host the website
+- Use a better algorithm to calculate time till next occurence of a given anki
  ---
  
